@@ -80,7 +80,7 @@ function displayTimeblocks() {
         hourRow.setAttribute("class", "row")
         hourContainer.append(hourRow)
 
-        var hourField = document.createElement("p")
+        var hourField = document.createElement("div")
         hourField.setAttribute("class", "hour")
         hourField.setAttribute("class", "col-md-2 hour") 
         hourField.textContent = hourlySchedule[i].time + " " + hourlySchedule[i].meridiem
@@ -93,6 +93,20 @@ function displayTimeblocks() {
         planInput.setAttribute("id", hourlySchedule[i].id)
         planField.append(planInput)
         hourRow.append(planField)
+
+        if (hourlySchedule[i].time < moment().format("HH")){
+            planInput.setAttribute("class", "past")
+        } 
+        else if (hourlySchedule[i].time === moment().format("HH")){
+            planInput.setAttribute("class", "present")
+        }
+        else if (hourlySchedule[i].time > moment().format("HH")){
+            planInput.setAttribute("class", "future")
+        }
+
+
+
+
         
         
     }
