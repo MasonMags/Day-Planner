@@ -6,63 +6,63 @@ var hourlySchedule = [
         hour: "09",
         time: "09",
         meridiem: "AM",
-        comment: ""
+        reminder: ""
     },
     {
         id: "1",
         hour: "10",
         time: "10",
         meridiem: "AM",
-        comment: ""
+        reminder: ""
     },
     {
         id: "2",
         hour: "11",
         time: "11",
         meridiem: "AM",
-        comment: ""
+        reminder: ""
     },
     {
         id: "3",
         hour: "12",
         time: "12",
         meridiem: "PM",
-        comment: ""
+        reminder: ""
     },
     {
         id: "4",
         hour: "01",
         time: "01",
         meridiem: "PM",
-        comment: ""
+        reminder: ""
     },
     {
         id: "5",
         hour: "02",
         time: "02",
         meridiem: "PM",
-        comment: ""
+        reminder: ""
     },
     {
         id: "6",
         hour: "03",
         time: "03",
         meridiem: "PM",
-        comment: ""
+        reminder: ""
     },
     {
         id: "7",
         hour: "04",
         time: "04",
         meridiem: "PM",
-        comment: ""
+        reminder: ""
     },
     {
         id: "8",
         hour: "05",
         time: "05",
         meridiem: "PM",
-        comment: ""
+        reminder: ""
     },
 ]
 
@@ -104,10 +104,8 @@ function displayTimeblocks() {
             planInput.setAttribute("class", "future")
         }
 
-
-
-
-        
-        
+        var saveButton = document.createElement("button")
+        saveButton.setAttribute("class", "col-md-1 saveBtn")
+        hourRow.append(saveButton)   
     }
 }
