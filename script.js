@@ -66,6 +66,8 @@ var hourlySchedule = [
     },
 ]
 
+ var reminders =[]
+
 window.onload = getCurrentDate();
 
 function getCurrentDate() {
@@ -73,8 +75,33 @@ function getCurrentDate() {
     displayTimeblocks(); 
 }
 
+
+
+// function displayReminders() {
+    
+// }
+
+function init() {
+    var storedReminders = JSON.parse(localStorage.getItem("reminders"));
+
+    if (storedReminders) {
+        reminders = storedReminders;
+    }
+
+    saveReminders();
+    displayTimeblocks();
+}
+
+function saveReminders() {
+    localStorage.setItem("reminders", JSON.stringify(reminders));
+}
+
+
 function displayTimeblocks() {
     for (var i = 0; i < hourlySchedule.length; i++) {
+
+        var reminders = hourlySchedule[i].reminder
+
         var hourContainer = document.getElementById("hour-container")
         var hourRow = document.createElement("form")
         hourRow.setAttribute("class", "row")
@@ -90,7 +117,8 @@ function displayTimeblocks() {
         var planField = document.createElement("div") 
         planField.setAttribute("class", "col-md-9 description p-0")
         planInput = document.createElement("textarea")
-        planInput.setAttribute("id", hourlySchedule[i].id)
+        planInput.setAttribute("reminder", hourlySchedule[i].reminder)
+        planInput.textContent = reminders;
         planField.append(planInput)
         hourRow.append(planField)
 
@@ -104,8 +132,50 @@ function displayTimeblocks() {
             planInput.setAttribute("class", "future")
         }
 
+        var saveImage = document.createElement("i")
+        saveImage.setAttribute("class", "far fa-save fa-lg")
         var saveButton = document.createElement("button")
         saveButton.setAttribute("class", "col-md-1 saveBtn")
+        saveButton.append(saveImage)
         hourRow.append(saveButton)   
-    }
+    };
+
+    saveButton.addEventListener("click", function(event){
+        event.preventDefault();
+        var reminderText = planInput.value.trim();
+    
+        if (reminderText === ""){
+            return;
+        }
+    
+        reminders.push(reminderText);
+        planInput.value="";
+    });
+    
 }
+init();
+
+// document.querySelector('btn').addEventListener("click", function(event){
+//     event.preventDefault();
+//     var reminderText = planInput.value.trim();
+
+//     if (reminderText === ""){
+//         return;
+//     }
+
+//     reminders.push(reminderText);
+//     planInput.value="";
+// });
+
+
+
+
+// $(".saveBtn").on("click", function(event) {
+//     event.preventDefault();
+//     const arr = hourlySchedule || []
+//     //var saveIndex = $(this).siblings(".description").children(".future").attr("id");
+//     hourlySchedule.reminder = $(this).siblings(".description").children(".future").val();
+//     console.log();
+//     saveReminders();
+//     displayReminders();
+// })
