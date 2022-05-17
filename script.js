@@ -66,7 +66,6 @@ var hourlySchedule = [
     },
 ]
 
- var reminders =[]
 
 window.onload = getCurrentDate();
 
@@ -89,18 +88,19 @@ function init() {
     }
 
     saveReminders();
-    displayTimeblocks();
+    //displayTimeblocks();
 }
 
 function saveReminders() {
-    localStorage.setItem("reminders", JSON.stringify(reminders));
+    for(var j=0; j < hourlySchedule.length; j++)
+    localStorage.setItem("reminders", JSON.stringify(hourlySchedule[j].reminder));
 }
 
 
 function displayTimeblocks() {
     for (var i = 0; i < hourlySchedule.length; i++) {
 
-        var reminders = hourlySchedule[i].reminder
+        //var reminders = hourlySchedule[i].reminder
 
         var hourContainer = document.getElementById("hour-container")
         var hourRow = document.createElement("form")
@@ -114,13 +114,13 @@ function displayTimeblocks() {
         hourRow.append(hourField)
 
        
-        var planField = document.createElement("div") 
-        planField.setAttribute("class", "col-md-9 description p-0")
+       // var planField = document.createElement("div") 
+       // planField.setAttribute("class", "col-md-9 description p-0")
         planInput = document.createElement("textarea")
-        planInput.setAttribute("reminder", hourlySchedule[i].reminder)
-        planInput.textContent = reminders;
-        planField.append(planInput)
-        hourRow.append(planField)
+        planInput.setAttribute("class", "col-md-9 description p-0")
+        planInput.textContent = hourlySchedule[i].reminder;
+        //planField.append(planInput)
+        hourRow.append(planInput)
 
         if (hourlySchedule[i].time < moment().format("HH")){
             planInput.setAttribute("class", "past")
@@ -138,20 +138,21 @@ function displayTimeblocks() {
         saveButton.setAttribute("class", "col-md-1 saveBtn")
         saveButton.append(saveImage)
         hourRow.append(saveButton)   
-    };
 
-    saveButton.addEventListener("click", function(event){
-        event.preventDefault();
-        var reminderText = planInput.value.trim();
-    
-        if (reminderText === ""){
-            return;
-        }
-    
-        reminders.push(reminderText);
-        planInput.value="";
-    });
-    
+        saveButton.addEventListener("click", function(event){
+            event.preventDefault();
+            var reminderText = planInput.value;
+            //var reminders = []
+        
+            if (reminderText === ""){
+                 return;
+             }
+            var reminders = hourlySchedule[i].reminder.split(' ');
+            reminders.push(reminderText);
+            reminder.join(" ")
+            planInput.value="";
+        });
+    }; 
 }
 init();
 
