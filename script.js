@@ -3,68 +3,61 @@ var currentDay = document.getElementById("currentDay")
 var hourlySchedule = [
     {
         id: "0",
-        hour: "09",
         time: "09",
         meridiem: "AM",
         reminder: ""
     },
     {
         id: "1",
-        hour: "10",
         time: "10",
         meridiem: "AM",
         reminder: ""
     },
     {
         id: "2",
-        hour: "11",
         time: "11",
         meridiem: "AM",
         reminder: ""
     },
     {
         id: "3",
-        hour: "12",
         time: "12",
         meridiem: "PM",
         reminder: ""
     },
     {
         id: "4",
-        hour: "01",
         time: "01",
         meridiem: "PM",
         reminder: ""
     },
     {
         id: "5",
-        hour: "02",
         time: "02",
         meridiem: "PM",
         reminder: ""
     },
     {
         id: "6",
-        hour: "03",
         time: "03",
         meridiem: "PM",
         reminder: ""
     },
     {
         id: "7",
-        hour: "04",
         time: "04",
         meridiem: "PM",
         reminder: ""
     },
     {
         id: "8",
-        hour: "05",
         time: "05",
         meridiem: "PM",
         reminder: ""
     },
 ]
+
+let reminders = JSON.parse(localStorage.getItem("plan")) || []
 
 
 window.onload = getCurrentDate();
@@ -76,50 +69,39 @@ function getCurrentDate() {
 
 
 
-// function displayReminders() {
-    
+
+// function init() {
+//     var storedReminders = JSON.parse(localStorage.getItem("reminders"));
+
+//     if (storedReminders) {
+//         reminders = storedReminders;
+//     }
+
+//     saveReminders();
+//     //displayTimeblocks();
 // }
 
-function init() {
-    var storedReminders = JSON.parse(localStorage.getItem("reminders"));
-
-    if (storedReminders) {
-        reminders = storedReminders;
-    }
-
-    saveReminders();
-    //displayTimeblocks();
-}
-
-function saveReminders() {
-    for(var j=0; j < hourlySchedule.length; j++)
-    localStorage.setItem("reminders", JSON.stringify(hourlySchedule[j].reminder));
-}
+// function saveReminders() {
+//     for(var j=0; j < hourlySchedule.length; j++)
+//     localStorage.setItem("reminders", JSON.stringify(hourlySchedule[j].reminder));
+// }
 
 
 function displayTimeblocks() {
     for (var i = 0; i < hourlySchedule.length; i++) {
-
-        //var reminders = hourlySchedule[i].reminder
 
         var hourContainer = document.getElementById("hour-container")
         var hourRow = document.createElement("form")
         hourRow.setAttribute("class", "row")
         hourContainer.append(hourRow)
 
-        var hourField = document.createElement("div")
-        hourField.setAttribute("class", "hour")
+        var hourField = document.createElement("p")
         hourField.setAttribute("class", "col-md-2 hour") 
         hourField.textContent = hourlySchedule[i].time + " " + hourlySchedule[i].meridiem
         hourRow.append(hourField)
 
-       
-       // var planField = document.createElement("div") 
-       // planField.setAttribute("class", "col-md-9 description p-0")
         planInput = document.createElement("textarea")
         planInput.setAttribute("class", "col-md-9 description p-0")
-        planInput.textContent = hourlySchedule[i].reminder;
-        //planField.append(planInput)
         hourRow.append(planInput)
 
         if (hourlySchedule[i].time < moment().format("HH")){
@@ -140,21 +122,19 @@ function displayTimeblocks() {
         hourRow.append(saveButton)   
 
         saveButton.addEventListener("click", function(event){
-            event.preventDefault();
-            var reminderText = planInput.value;
-            //var reminders = []
-        
-            if (reminderText === ""){
-                 return;
-             }
-            var reminders = hourlySchedule[i].reminder.split(' ');
-            reminders.push(reminderText);
-            reminder.join(" ")
-            planInput.value="";
+            reminders.push(planInput.value)
+            localStorage.setItem("plan", JSON.stringify(reminders));
+            renderEvents();
         });
+
+        function renderEvents(){
+            for (let j = 0; j < reminders.length; j++){
+               
+            }
+        }
     }; 
 }
-init();
+//  
 
 // document.querySelector('btn').addEventListener("click", function(event){
 //     event.preventDefault();
