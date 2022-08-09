@@ -1,3 +1,6 @@
+var today = moment().format("dddd, MMMM Do");
+var now = moment().format("H A")
+
 var currentDay = document.getElementById("currentDay")
 
 var hourlySchedule = [
