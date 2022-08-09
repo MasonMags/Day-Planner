@@ -3,59 +3,42 @@ var now = moment().format("H A")
 
 var currentDay = document.getElementById("currentDay")
 
-var hourlySchedule = [
+var planWorkday = [
     {
-        id: "0",
-        time: "09",
-        meridiem: "AM",
+        time: "9 AM",
         reminder: ""
     },
     {
-        id: "1",
-        time: "10",
-        meridiem: "AM",
+        time: "10 AM",
         reminder: ""
     },
     {
-        id: "2",
-        time: "11",
-        meridiem: "AM",
+
+        time: "11 AM",
         reminder: ""
     },
     {
-        id: "3",
-        time: "12",
-        meridiem: "PM",
+        time: "12 PM",
         reminder: ""
     },
     {
-        id: "4",
-        time: "01",
-        meridiem: "PM",
+        time: "1 PM",
         reminder: ""
     },
     {
-        id: "5",
-        time: "02",
-        meridiem: "PM",
+        id: "2 PM",
         reminder: ""
     },
     {
-        id: "6",
-        time: "03",
-        meridiem: "PM",
+        time: "03 PM",
         reminder: ""
     },
     {
-        id: "7",
-        time: "04",
-        meridiem: "PM",
+        time: "4 PM",
         reminder: ""
     },
     {
-        id: "8",
-        time: "05",
-        meridiem: "PM",
+        time: "5 PM",
         reminder: ""
     },
 ]
