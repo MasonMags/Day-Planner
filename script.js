@@ -66,6 +66,18 @@ planWorkday.forEach(function(timeBlock, index){
 
     $(".container").append(row);
 })
+
+function colorRow(time) {
+	var planNow = moment(now, "H A");
+	var planEntry = moment(time, "H A");
+	if (planNow.isBefore(planEntry) === true) {
+		return "future";
+	} else if (planNow.isAfter(planEntry) === true) {
+		return "past";
+	} else {
+		return "present";
+	}
+}
 // function init() {
 //     var storedReminders = JSON.parse(localStorage.getItem("reminders"));
 
