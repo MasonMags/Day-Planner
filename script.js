@@ -27,7 +27,7 @@ var planWorkday = [
         event: ""
     },
     {
-        id: "2 PM",
+        time: "2 PM",
         event: ""
     },
     {
