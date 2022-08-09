@@ -1,49 +1,53 @@
+$(function () {});
+
 var today = moment().format("dddd, MMMM Do");
 var now = moment().format("H A")
 
-var currentDay = document.getElementById("currentDay")
 
 var planWorkday = [
     {
         time: "9 AM",
-        reminder: ""
+        event: ""
     },
     {
         time: "10 AM",
-        reminder: ""
+        event: ""
     },
     {
 
         time: "11 AM",
-        reminder: ""
+        event: ""
     },
     {
         time: "12 PM",
-        reminder: ""
+        event: ""
     },
     {
         time: "1 PM",
-        reminder: ""
+        event: ""
     },
     {
         id: "2 PM",
-        reminder: ""
+        event: ""
     },
     {
         time: "03 PM",
-        reminder: ""
+        event: ""
     },
     {
         time: "4 PM",
-        reminder: ""
+        event: ""
     },
     {
         time: "5 PM",
-        reminder: ""
+        event: ""
     },
 ]
 
-let reminders = JSON.parse(localStorage.getItem("plan")) || []
+var workEvents = JSON.parse(localStorage.getItem("workDay"));
+if (workEvents) {
+    planWorkday = workEvents
+}
 
 
 window.onload = getCurrentDate();
