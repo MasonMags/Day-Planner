@@ -49,6 +49,7 @@ if (workEvents) {
     planWorkday = workEvents
 }
 
+$("#currentDay").text(today)
 
 window.onload = getCurrentDate();
 
